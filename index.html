@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LSPD Incident Report Generator</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 800px; margin: auto; padding: 20px; }
+    label { display: block; margin-top: 10px; }
+    textarea { width: 100%; height: 80px; }
+    .laws { margin-top: 20px; }
+    .laws label { display: block; margin-bottom: 5px; }
+    #output { white-space: pre-wrap; background: #f4f4f4; padding: 10px; margin-top: 20px; }
+    button { margin-top: 15px; padding: 10px 20px; }
+  </style>
+</head>
+<body>
+  <h1>LSPD Incident Report Generator</h1>
+
+  <label>Jméno podezřelého:<br>
+    <input type="text" id="suspectName">
+  </label>
+
+  <label>DOB podezřelého:<br>
+    <input type="date" id="suspectDOB">
+  </label>
+
+  <label>Telefonní číslo podezřelého:<br>
+    <input type="tel" id="suspectPhone">
+  </label>
+
+  <label>Popis události:<br>
+    <textarea id="eventDesc"></textarea>
+  </label>
+
+  <label>Zabavené věci:<br>
+    <textarea id="seizedItems"></textarea>
+  </label>
+
+  <label>Zatýkající strážník:<br>
+    <input type="text" id="arrestingOfficer">
+  </label>
+
+  <div class="laws">
+    <h2>Příslušné paragrafy (Kalifornský zákoník)</h2>
+    <label><input type="checkbox" value="Penal Code §187 – Murder: trest smrti, doživotí nebo 15 let-toživot."> §187 – Murder</label>
+    <label><input type="checkbox" value="Penal Code §211 – Robbery: 2–5 let (pokud střelná zbraň, 3–9 let)."> §211 – Robbery</label>
+    <label><input type="checkbox" value="Penal Code §207 – Kidnapping: 2–9 let (1–25 let/jakékoli zranění)."> §207 – Kidnapping</label>
+    <label><input type="checkbox" value="Penal Code §273.5 – Domestic Violence: až 4 roky."> §273.5 – Domestic Violence</label>
+    <label><input type="checkbox" value="Penal Code §245 – Assault with a Deadly Weapon: 2–4 roky."> §245 – Assault with DW</label>
+    <label><input type="checkbox" value="Penal Code §261 – Rape: 3, 6 nebo 8 let."> §261 – Rape</label>
+    <label><input type="checkbox" value="Penal Code §243(e)(1) – Domestic Battery: pokuta a/nebo až 1 rok."> §243(e)(1) – Domestic Battery</label>
+    <label><input type="checkbox" value="Penal Code §21810 – Unlawful use of weapon: pokuta a/nebo vězení dle typu."> §21810 – Unlawful weapon use</label>
+    <label><input type="checkbox" value="Penal Code §212.5 – Home invasion robbery: trest zvýšen až na 3 roky navíc."> §212.5 – Home invasion robbery</label>
+    <!-- Přidej další podle potřeby -->
+  </div>
+
+  <button onclick="generateReport()">Generovat zprávu</button>
+
+  <h2>Výsledná zpráva</h2>
+  <div id="output"></div>
+
+  <script>
+    function generateReport() {
+      const name = document.getElementById('suspectName').value;
+      const dob = document.getElementById('suspectDOB').value;
+      const phone = document.getElementById('suspectPhone').value;
+      const eventDesc = document.getElementById('eventDesc').value;
+      const seized = document.getElementById('seizedItems').value;
+      const officer = document.getElementById('arrestingOfficer').value;
+      const checked = Array.from(document.querySelectorAll('.laws input:checked'))
+        .map(cb => cb.value);
+
+      let report = `--- INCIDENT REPORT ---\n\n`;
+      report += `Suspect Name: ${name}\n`;
+      report += `DOB: ${dob}\n`;
+      report += `Phone: ${phone}\n\n`;
+      report += `Event Description:\n${eventDesc}\n\n`;
+      report += `Seized Items:\n${seized}\n\n`;
+      report += `Arresting Officer: ${officer}\n\n`;
+      report += `Applicable Laws:\n`;
+      checked.forEach(l => report += `- ${l}\n`);
+
+      document.getElementById('output').textContent = report;
+    }
+  </script>
+</body>
+</html>
