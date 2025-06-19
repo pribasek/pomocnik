@@ -160,15 +160,15 @@
       const checked = Array.from(document.querySelectorAll('.laws input:checked'))
         .map(cb => cb.value);
 
-      let report = --- LSPD INCIDENT REPORT ---\n\n;
-      report += 🕵️‍♂️ Podezřelý: ${name}\n;
-      report += 📅 Datum narození: ${dob}\n;
-      report += 📞 Telefon: ${phone}\n\n;
-      report += 📄 Popis události:\n${eventDesc}\n\n;
-      report += 📦 Zabavené věci:\n${seized}\n\n;
-      report += 👮 Zatýkající strážník: ${officer}\n\n;
-      report += 📚 Porušené zákony:\n;
-      checked.forEach(l => report += - ${l}\n);
+      let report = `--- LSPD INCIDENT REPORT ---\n\n`;
+      report += `🕵️‍♂️ Podezřelý: ${name}\n`;
+      report += `📅 Datum narození: ${dob}\n`;
+      report += `📞 Telefon: ${phone}\n\n`;
+      report += `📄 Popis události:\n${eventDesc}\n\n`;
+      report += `📦 Zabavené věci:\n${seized}\n\n`;
+      report += `👮 Zatýkající strážník: ${officer}\n\n`;
+      report += `📚 Porušené zákony:\n`;
+      checked.forEach(l => report += `- ${l}\n`);
 
       document.getElementById('output').textContent = report;
     }
