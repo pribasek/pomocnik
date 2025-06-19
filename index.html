@@ -149,7 +149,7 @@
 </head>
 <body>
   <header>
-    <h1>LSPD Incident Report Generator</h1>
+    <h1>LSPD INCIDENT REPORT</h1>
   </header>
 
   <main>
@@ -187,12 +187,21 @@
     <div class="laws">
       <h2>Penal Code (PEN)</h2>
       <label>
-        <input type="checkbox" value="§187 – Neoprávněné držení střelné zbraně">
+        <input type="checkbox" value="§187 – Vražda">
         <div class="law-text">
-          <span>§187 – Neoprávněné držení střelné zbraně: popis</span>
-          <span class="penalty">Trest - 16 měsíců - 3 roky ve Státní věznici.</span>
+          <span>§187 – Vražda: Vražda je nezákonné usmrcení lidské bytosti nebo plodu s předem promyšleným úmyslem.</span>
+          <span class="penalty">Trest - První stupeň: naplánované nebo speciální okolnosti → trest 25 let až doživotí. Druhý stupeň: nenaplánované → trest 15 let až doživotí.</span>
         </div>
       </label>
+
+      <label>
+        <input type="checkbox" value=" §245(a)(1) Napadení se smrtící zbraní">
+        <div class="law-text">
+          <span> §245(a)(1) Napadení se smrtící zbraní: Každý, kdo spáchá útok na druhou osobu se smrtící zbraní nebo nástrojem (mimo palné zbraně).</span>
+          <span class="penalty">Trest - Felony: 2-4 roky ve Státní věznici + $10.000 pokuta. Misdemeanor: až 1 rok ve Státní věznici + $1.000 pokuta</span>
+        </div>
+      </label>
+
     </div>
 
     <div class="laws">
@@ -200,17 +209,11 @@
       <label>
         <input type="checkbox" value="§23152(a) – Řízení pod vlivem alkoholu nebo drog (DUI)">
         <div class="law-text">
-          <span>§23152(a) – Řízení pod vlivem alkoholu nebo drog (DUI): popis</span>
-          <span class="penalty">Trest - Až 6 měsíců ve Státní věznici + $390 - $1.000 pokuta.</span>
+          <span>§23152(a) – Řízení pod vlivem alkoholu nebo drog (DUI): Je nezákonné, aby osoba, která je pod vlivem alkoholického nápoje, řídila motorové vozidlo.</span>
+          <span class="penalty">Trest - Až 6 měsíců ve Státní věznici + $390 - $1.000 pokuta + Odebrání řidičského oprávnění.</span>
         </div>
       </label>
-      <label>
-        <input type="checkbox" value="§12345 – dssadasdff fasfasfa">
-        <div class="law-text">
-          <span>§12345 – dssadasdff fasfasfa: popis</span>
-          <span class="penalty">Trest - Až 6 měsíců ve Státní věznici + $390 - $1.000 pokuta.</span>
-        </div>
-      </label>
+
     </div>
 
     <div class="laws">
@@ -222,6 +225,7 @@
           <span class="penalty">Trest – 1–3 roky ve Státní Věznici</span>
         </div>
       </label>
+
     </div>
 
     <button onclick="generateReport()">Generovat zprávu</button>
