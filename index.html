@@ -132,7 +132,7 @@
     </label>
 
     <div class="section">
-      <h2>Typ trestného činu</h2>
+      <h2>Crime Type</h2>
       <label><input type="checkbox" name="crimeType" value="Infraction"> Infraction (přestupek)</label><br>
       <label><input type="checkbox" name="crimeType" value="Misdemeanor"> Misdemeanor (přečin)</label><br>
       <label><input type="checkbox" name="crimeType" value="Felony"> Felony (zločin)</label>
@@ -167,8 +167,7 @@
       const seized = document.getElementById('seizedItems').value;
       const officer = document.getElementById('arrestingOfficer').value;
       const crimeType = document.querySelector('input[name="crimeType"]:checked');
-if (crimeType) 
-  report += `\nTyp trestného činu: ${crimeType.value}\n`;
+      if (crimeType);
       const checked = Array.from(document.querySelectorAll('.laws input:checked'))
         .map(cb => cb.value);
 
@@ -179,6 +178,7 @@ if (crimeType)
       report += `📄 Popis události:\n${eventDesc}\n\n`;
       report += `📦 Zabavené věci:\n${seized}\n\n`;
       report += `👮 Zatýkající strážník: ${officer}\n\n`;
+      report += `\nTyp trestného činu: ${crimeType.value}\n\n`;
       report += `📚 Porušené zákony:\n`;
       checked.forEach(l => report += `- ${l}\n\n`);
       report += `Dohoda o vině trestu: ${name} narozen/a ${dob} souhlasí se všemi obviněními a souhlasí s trestem (DOPLNIT např. 8 let ve Státní věznici + $46.000 pokuta) podle (POUZE PARAGRAF např. PEN §245, PEN §546, VEH §162,\n`;
