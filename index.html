@@ -42,7 +42,10 @@
       font-weight: bold;
     }
 
-    input, textarea {
+    input[type="text"],
+    input[type="date"],
+    input[type="tel"],
+    textarea {
       width: 100%;
       padding: 10px;
       margin-top: 5px;
@@ -55,23 +58,35 @@
       resize: vertical;
     }
 
-    .laws {
+    .section, .laws {
       margin-top: 25px;
     }
 
+    .section h2,
     .laws h2 {
       margin-bottom: 10px;
       font-size: 20px;
       color: #f1c40f;
     }
 
+    .section label,
     .laws label {
       font-weight: normal;
       background: #1f2f4a;
       padding: 8px;
       border-radius: 6px;
       margin-bottom: 5px;
-      display: block;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+    }
+
+    input[type="checkbox"],
+    input[type="radio"] {
+      margin: 0;
+      flex-shrink: 0;
+      transform: scale(1.2);
     }
 
     button {
@@ -132,32 +147,26 @@
     </label>
 
     <div class="section">
-      <h2>Crime Typee</h2>
-      <label>
-        <input type="radio" name="crimeType" value="Infraction"> Infraction (přestupek)</label><br>
-      <label>
-        <input type="radio" name="crimeType" value="Misdemeanor"> Misdemeanor (přečin)</label><br>
-      <label>
-        <input type="radio" name="crimeType" value="Felony"> Felony (zločin)</label>
+      <h2>Typ trestného činu</h2>
+      <label><input type="radio" name="crimeType" value="Infraction"> Infraction (přestupek)</label>
+      <label><input type="radio" name="crimeType" value="Misdemeanor"> Misdemeanor (přečin)</label>
+      <label><input type="radio" name="crimeType" value="Felony"> Felony (zločin)</label>
     </div>
 
     <div class="laws">
       <h2>Penal Code (PEN)</h2>
-      <label>
-        <input type="checkbox" value="§187 – Neoprávněné držení střelné zbraně"> §187 – Neoprávněné držení střelné zbraně: Trest - 16 měsíců - 3 roky ve Státní věznici.</label>
+      <label><input type="checkbox" value="§187 – Neoprávněné držení střelné zbraně"> §187 – Neoprávněné držení střelné zbraně: Trest - 16 měsíců - 3 roky ve Státní věznici.</label>
     </div>
 
     <div class="laws">
-        <h2>Vehicle Code (VEH)</h2>
-        <label>
-          <input type="checkbox" value="§23152(a) – Řízení pod vlivem alkoholu nebo drog (DUI)"> §23152(a) – Řízení pod vlivem alkoholu nebo drog (DUI): Trest - Až 6 měsíců ve Státní věznici + $390 - $1.000 pokuta.</label>
-      </div>
+      <h2>Vehicle Code (VEH)</h2>
+      <label><input type="checkbox" value="§23152(a) – Řízení pod vlivem alkoholu nebo drog (DUI)"> §23152(a) – Řízení pod vlivem alkoholu nebo drog (DUI): Trest - Až 6 měsíců ve Státní věznici + $390 - $1.000 pokuta.</label>
+    </div>
 
-      <div class="laws">
-        <h2>Health and Safety Code (HSC)</h2>
-        <label>
-          <input type="checkbox" value="§11350(a) – Nelegální držení kontrolované látky"> §11350(a) – Nelegální držení kontrolované látky: Trest - 1-3 roky ve Státní Věznici</label>
-      </div>
+    <div class="laws">
+      <h2>Health and Safety Code (HSC)</h2>
+      <label><input type="checkbox" value="§11350(a) – Nelegální držení kontrolované látky"> §11350(a) – Nelegální držení kontrolované látky: Trest - 1-3 roky ve Státní Věznici</label>
+    </div>
 
     <button onclick="generateReport()">Generovat zprávu</button>
 
@@ -166,38 +175,35 @@
 
   <script>
     function generateReport() {
-  const name = document.getElementById('suspectName').value;
-  const dob = document.getElementById('suspectDOB').value;
-  const phone = document.getElementById('suspectPhone').value;
-  const eventDesc = document.getElementById('eventDesc').value;
-  const seized = document.getElementById('seizedItems').value;
-  const officer = document.getElementById('arrestingOfficer').value;
-  const crimeType = document.querySelector('input[name="crimeType"]:checked');
-  const checked = Array.from(document.querySelectorAll('.laws input:checked'))
-    .map(cb => cb.value);
+      const name = document.getElementById('suspectName').value;
+      const dob = document.getElementById('suspectDOB').value;
+      const phone = document.getElementById('suspectPhone').value;
+      const eventDesc = document.getElementById('eventDesc').value;
+      const seized = document.getElementById('seizedItems').value;
+      const officer = document.getElementById('arrestingOfficer').value;
+      const crimeType = document.querySelector('input[name="crimeType"]:checked');
+      const checked = Array.from(document.querySelectorAll('.laws input:checked')).map(cb => cb.value);
 
-  let report = `--- LSPD INCIDENT REPORT ---\n\n`;
-  report += `🕵️‍♂️ Podezřelý: ${name}\n`;
-  report += `📅 Datum narození: ${dob}\n`;
-  report += `📞 Telefon: ${phone}\n\n`;
-  report += `📄 Popis události:\n${eventDesc}\n\n`;
-  report += `📦 Zabavené věci:\n${seized}\n\n`;
-  report += `👮 Zatýkající strážník: ${officer}\n\n`;
+      let report = `--- LSPD INCIDENT REPORT ---\n\n`;
+      report += `🕵️‍♂️ Podezřelý: ${name}\n`;
+      report += `📅 Datum narození: ${dob}\n`;
+      report += `📞 Telefon: ${phone}\n\n`;
+      report += `📄 Popis události:\n${eventDesc}\n\n`;
+      report += `📦 Zabavené věci:\n${seized}\n\n`;
+      report += `👮 Zatýkající strážník: ${officer}\n\n`;
 
-  // ✅ Výpis typu trestného činu
-  if (crimeType) {
-    report += `🔍 Typ trestného činu: ${crimeType.value}\n\n`;
-  }
+      if (crimeType) {
+        report += `🔍 Typ trestného činu: ${crimeType.value}\n\n`;
+      }
 
-  // ✅ Výpis zákonů
-  report += `📚 Porušené zákony:\n`;
-  checked.forEach(l => report += `- ${l}\n\n`);
+      report += `📚 Porušené zákony:\n`;
+      checked.forEach(l => report += `- ${l}\n\n`);
 
-  report += `Dohoda o vině trestu: ${name} narozen/a ${dob} souhlasí se všemi obviněními a souhlasí s trestem (DOPLNIT např. 8 let ve Státní věznici + $46.000 pokuta) podle:\n`;
-  checked.forEach(l => report += `- ${l}\n`);
+      report += `Dohoda o vině trestu: ${name} narozen/a ${dob} souhlasí se všemi obviněními a souhlasí s trestem (DOPLNIT např. 8 let ve Státní věznici + $46.000 pokuta) podle:\n`;
+      checked.forEach(l => report += `- ${l}\n`);
 
-  document.getElementById('output').textContent = report;
-}
+      document.getElementById('output').textContent = report;
+    }
   </script>
 </body>
 </html>
