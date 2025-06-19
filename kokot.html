@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Generátor zprávy - LSPD</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #1e1e1e;
+      color: #fff;
+    }
+
+    h1, h2 {
+      color: #f1c40f;
+    }
+
+    label {
+      display: block;
+      margin: 10px 0 5px;
+    }
+
+    input[type="text"],
+    input[type="date"],
+    input[type="tel"],
+    textarea {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      border: none;
+      border-radius: 5px;
+      background-color: #333;
+      color: #fff;
+    }
+
+    button {
+      background-color: #f1c40f;
+      color: #000;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .split-layout {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+
+    .left-column,
+    .right-column {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .left-column {
+      max-width: 50%;
+    }
+
+    .right-column {
+      max-width: 50%;
+      overflow-y: auto;
+      max-height: 90vh;
+      padding-left: 20px;
+      border-left: 2px solid #f1c40f;
+    }
+
+    .laws {
+      background-color: #2c2c2c;
+      border: 1px solid #444;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+    }
+
+    .section {
+      margin-bottom: 20px;
+    }
+
+    #output {
+      background-color: #2c2c2c;
+      padding: 15px;
+      margin-top: 20px;
+      border-radius: 5px;
+      border: 1px solid #444;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>LSPD - Generátor zprávy</h1>
+
+  <!-- Vstupní údaje -->
+  <div class="section">
+    <label for="datum">Datum</label>
+    <input type="date" id="datum" />
+
+    <label for="cas">Čas</label>
+    <input type="text" id="cas" placeholder="Např. 13:45" />
+
+    <label for="jmeno">Jméno podezřelého</label>
+    <input type="text" id="jmeno" />
+
+    <label for="telefon">Telefonní číslo</label>
+    <input type="tel" id="telefon" placeholder="555-123-456" />
+  </div>
+
+  <main class="split-layout">
+    <!-- Levá část -->
+    <div class="left-column">
+      <div class="section">
+        <h2>Typ zločinu</h2>
+        <label><input type="radio" name="crime" value="krádež"> Krádež</label>
+        <label><input type="radio" name="crime" value="násilí"> Násilí</label>
+        <label><input type="radio" name="crime" value="vražda"> Vražda</label>
+        <label><input type="radio" name="crime" value="vandalismus"> Vandalismus</label>
+      </div>
+
+      <button onclick="generateReport()">Generovat zprávu</button>
+
+      <div id="output"></div>
+    </div>
+
+    <!-- Pravá část - zákony -->
+    <div class="right-column">
+      <h2>Přehled zákonů</h2>
+
+      <div class="laws">
+        <strong>§1: Neoprávněné vniknutí</strong><br/>
+        Vniknutí na soukromý nebo zakázaný pozemek bez oprávnění.
+      </div>
+
+      <div class="laws">
+        <strong>§2: Napadení</strong><br/>
+        Použití násilí vůči jiné osobě bez jejího souhlasu.
+      </div>
+
+      <div class="laws">
+        <strong>§3: Krádež</strong><br/>
+        Odcizení majetku jiné osoby.
+      </div>
+
+      <div class="laws">
+        <strong>§4: Vandalismus</strong><br/>
+        Poškození cizího majetku záměrnou činností.
+      </div>
+
+      <div class="laws">
+        <strong>§5: Vražda</strong><br/>
+        Úmyslné usmrcení jiné osoby.
+      </div>
+
+      <!-- Další zákony podle potřeby -->
+    </div>
+  </main>
+
+  <script>
+    function generateReport() {
+      const datum = document.getElementById("datum").value;
+      const cas = document.getElementById("cas").value;
+      const jmeno = document.getElementById("jmeno").value;
+      const telefon = document.getElementById("telefon").value;
+      const crime = document.querySelector('input[name="crime"]:checked');
+
+      if (!datum || !cas || !jmeno || !telefon || !crime) {
+        alert("Vyplň prosím všechny údaje.");
+        return;
+      }
+
+      const zprava = `Dne ${datum} v čase ${cas} byl zadržen podezřelý ${jmeno}, tel. ${telefon}, za čin: ${crime.value.toUpperCase()}. Další kroky budou podniknuty dle příslušného zákona.`;
+
+      document.getElementById("output").innerText = zprava;
+    }
+  </script>
+
+</body>
+</html>
