@@ -179,7 +179,6 @@
           <span class="penalty">Trest - Felony: 2-4 roky ve Státní věznici + $10.000 pokuta. Misdemeanor: až 1 rok ve Státní věznici + $1.000 pokuta.</span>
         </div>
       </label>
-
     </div>
 
     <div class="laws">
@@ -199,8 +198,6 @@
           <span class="penalty">Trest - Misdemeanor: až 1 rok ve Státní věznici + $5.000 pokuta. Felony: až 4 roky ve Státní věznici + $5.000 pokuta + restutice oběti.</span>
         </div>
       </label>
-
-
     </div>
 
     <div class="laws">
@@ -220,13 +217,12 @@
           <span class="penalty">Trest – 3, 6 nebo 9 let ve Státní Věznici + až $20.000 pokuta.</span>
         </div>
       </label>
-
     </div>
 
     <button onclick="generateReport()">Generovat zprávu</button>
 
     <div id="output"></div>
- </main>
+  </main>
 
   <script>
     function generateReport() {
@@ -239,7 +235,7 @@
       const crimeType = document.querySelector('input[name="crimeType"]:checked');
       const checked = Array.from(document.querySelectorAll('.laws input:checked')).map(cb => cb.value);
 
-      let report = `--- LSPD INCIDENT REPORT ---\n\n`;
+      let report = "--- LSPD INCIDENT REPORT ---\n\n";
       report += `🗥️ Jméno a příjmení: ${name}\n`;
       report += `🗕️ Datum narození: ${dob}\n`;
       report += `📞 Telefon: ${phone}\n\n`;
@@ -251,7 +247,7 @@
         report += `🔍 Typ trestného činu: ${crimeType.value}\n\n`;
       }
 
-      report += `📚 Porušené zákony:\n`;
+      report += "📚 Porušené zákony:\n";
       checked.forEach(l => report += `- ${l}\n\n`);
 
       report += `Dohoda o vině trestu: ${name} narozen/a ${dob} souhlasí se všemi obviněními a souhlasí s trestem (DOPLNIT např. 8 let ve Státní věznici + $46.000 pokuta) podle:\n`;
