@@ -131,12 +131,12 @@
       <input type="text" id="arrestingOfficer">
     </label>
 
-    <label class="laws">
-        <h2>TYP</h2>
-        <label><input type="checkbox"> Infraction (Přestupek) – Infraction (Přestupek) - Nejnižší forma porušení zákona.</label>
-        <label><input type="checkbox"> Misdemeanor (Přečin) – Misdemeanor (Přečin) - Středně závažný trestný čin.</label>
-        <label><input type="checkbox"> Felony (Zločin) – Felony (Zločin) - Nejtěžší trestné činy.</label>
-    </label>
+    <div class="section">
+      <h3>Crime Type (Typ trestného činu)</h3>
+      <label><input type="radio" name="crimeType" value="Infraction"> Infraction (přestupek)</label><br>
+      <label><input type="radio" name="crimeType" value="Misdemeanor"> Misdemeanor (přečin)</label><br>
+      <label><input type="radio" name="crimeType" value="Felony"> Felony (zločin)</label>
+    </div>
 
     <div class="laws">
       <h2>Penal Code (PEN)</h2>
