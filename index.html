@@ -169,6 +169,10 @@
       report += `👮 Zatýkající strážník: ${officer}\n\n`;
       report += `📚 Porušené zákony:\n`;
       checked.forEach(l => report += `- ${l}\n`);
+      report += `Dohoda o vině trestu: ${name} narozen/a ${dob} souhlasí s trestem (DOPLNIT) za porušení:\n`;
+      checked.forEach(l => report += `- ${l}\n`);
+      report += `Podpis odsouzeného:
+    
 
       document.getElementById('output').textContent = report;
     }
