@@ -153,7 +153,7 @@
   </header>
 
   <main>
-    <label>Jméno podezřelého:
+    <label>Jméno a příjmení:
       <input type="text" id="suspectName">
     </label>
 
@@ -262,7 +262,7 @@
       const checked = Array.from(document.querySelectorAll('.laws input:checked')).map(cb => cb.value);
 
       let report = `--- LSPD INCIDENT REPORT ---\n\n`;
-      report += `🕵️‍♂️ Podezřelý: ${name}\n`;
+      report += `🕵️‍♂️ Jméno a příjmení: ${name}\n`;
       report += `📅 Datum narození: ${dob}\n`;
       report += `📞 Telefon: ${phone}\n\n`;
       report += `📄 Popis události:\n${eventDesc}\n\n`;
