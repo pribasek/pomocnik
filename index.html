@@ -131,12 +131,12 @@
       <input type="text" id="arrestingOfficer">
     </label>
 
-    <div class="section">
-      <h2>Crime Type (Typ trestného činu)</h2>
-      <label><input type="checkbox" name="crimeType" value="Infraction"> Infraction (přestupek)</label><br>
-      <label><input type="checkbox" name="crimeType" value="Misdemeanor"> Misdemeanor (přečin)</label><br>
-      <label><input type="checkbox" name="crimeType" value="Felony"> Felony (zločin)</label>
-    </div>
+    <label class="laws">
+        <h2>Crime Type</h2>
+        <label><input type="checkbox"> Infraction (Přestupek) – Infraction (Přestupek) - Nejnižší forma porušení zákona.</label>
+        <label><input type="checkbox"> Misdemeanor (Přečin) – Misdemeanor (Přečin) - Středně závažný trestný čin.</label>
+        <label><input type="checkbox"> Felony (Zločin) – Felony (Zločin) - Nejtěžší trestné činy.</label>
+    </label>
 
     <div class="laws">
       <h2>Penal Code (PEN)</h2>
@@ -166,10 +166,6 @@
       const eventDesc = document.getElementById('eventDesc').value;
       const seized = document.getElementById('seizedItems').value;
       const officer = document.getElementById('arrestingOfficer').value;
-      const crimeType = document.querySelector('input[name="crimeType"]:checked');
-if (crimeType) {
-  report += `\nTyp trestného činu: ${crimeType.value}\n`;
-}
       const checked = Array.from(document.querySelectorAll('.laws input:checked'))
         .map(cb => cb.value);
 
